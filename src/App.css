@@ -36,7 +36,13 @@ body {
 
 .flashcard:hover {
   box-shadow: 0px 0px 20px 15px #000000;
+  transition: .2s ease-in-out;
 }
+
+.flashcard:not(:hover) {
+  transition: .3s ease-in-out;
+}
+
 
 .flipped {
   transform: rotateY(180deg);
