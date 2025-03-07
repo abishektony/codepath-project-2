@@ -57,9 +57,11 @@ function App() {
   };
 
   const handleNextClick = () => {
-    const randomIndex = Math.floor(Math.random() * flashcards.length);
-    setCurrentIndex(randomIndex);
     setFlipped(false);
+    setTimeout(() => {
+      const randomIndex = Math.floor(Math.random() * flashcards.length);
+      setCurrentIndex(randomIndex);
+    }, 600);
   };
 
   const getCategoryColor = (category) => {
@@ -67,38 +69,37 @@ function App() {
       Easy: "#4CAF50",
       Medium: "#FFA500",
       Hard: "#FF4500",
-      Biology: "#2196F3",
-      Chemistry: "#673AB7",
-      Art: "#E91E63"
     };
     return colors[category] || "#333";
   };
 
   return (
     <div className="flashcard-container">
-      <h1>Flashcard Quiz</h1>
-      <p>Total Cards: {flashcards.length}</p>
-      <p>Click the card to flip, click next to see a new card!</p>
-
-      <div className="card-wrapper" onClick={handleCardClick}>
+      <div>
+        <h1 style={{fontSize: 80}}>Flashcard Quiz</h1>
+        <p>Total Cards: {flashcards.length}</p>
+        <p><u>Click</u> the card to flip, <u>click</u> next to see a new card!</p>
+      </div>
+      <div className="card-wrapper">
         <div
-          className={`flashcard ${flipped ? "flipped" : ""}`}
+          className={`flashcard ${flipped ? "flipped" : ""}`} onClick={handleCardClick}
           style={{ borderColor: getCategoryColor(flashcards[currentIndex].category) }}
         >
           <div className="card-front">
             <img src={flashcards[currentIndex].image} alt="Flashcard Visual" className="card-image" />
-            <p>
+            <p className="card-question" style={{ color: getCategoryColor(flashcards[currentIndex].category) }}>
               {flashcards[currentIndex].question}
             </p>
           </div>
           <div className="card-back">
-            <p className="card-category" style={{ backgroundColor: getCategoryColor(flashcards[currentIndex].category) }}>
+            <img src={flashcards[currentIndex].image} alt="Flashcard Visual" className="card-image-reverse" />
+            <p className="card-answer" style={{ backgroundColor: getCategoryColor(flashcards[currentIndex].category) }}>
               {flashcards[currentIndex].answer}
             </p>
           </div>
         </div>
+        <button className="next-button" onClick={handleNextClick}>Next</button>
       </div>
-      <button className="next-button" onClick={handleNextClick}>Next</button>
     </div>
   );
 };
