@@ -29,18 +29,18 @@ body {
   height: 400px;
   position: relative;
   transform-style: preserve-3d;
-  transition: transform 0.6s;
+  transition: transform 0.6s ease-in-out;
   border: 5px solid;
   border-radius: 20px;
 }
 
 .flashcard:hover {
   box-shadow: 0px 0px 20px 15px #000000;
-  transition: .2s ease-in-out;
+  transition: .5s ease-in-out;
 }
 
 .flashcard:not(:hover) {
-  transition: .3s ease-in-out;
+  transition: .4s ease-in-out;
 }
 
 
@@ -117,7 +117,7 @@ body {
   border: none;
   border-radius: 15px;
   padding: 13px 40px;
-  margin-top: 20px;
+  margin-top: 25px;
 }
 
 .next-button:hover {
